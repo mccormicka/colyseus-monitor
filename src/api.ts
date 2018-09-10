@@ -3,11 +3,9 @@ import * as express from "express";
 
 export function getAPI (server: Server) {
     const api = express.Router();
-    const handlers = Object.keys(server.matchMaker.handlers);
-
     api.get("/", (req: express.Request, res: express.Response) => {
         const result: any = {};
-
+        const handlers = Object.keys(server.matchMaker.handlers);
         Promise.all(
             handlers.map((handler) => {
                 return server.matchMaker.
